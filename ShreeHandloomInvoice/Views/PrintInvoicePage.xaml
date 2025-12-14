@@ -1,0 +1,377 @@
+﻿<Page x:Class="ShreeHandloomInvoice.Views.PrintInvoicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       mc:Ignorable="d" 
+       Width="793" Height="1122" Background="White">
+
+    <Grid>
+
+        <!-- =====================  FULL OUTER BORDER  ===================== -->
+        <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <!-- Title -->
+                    <RowDefinition Height="180"/>
+                    <!-- Company + Invoice Info -->
+                    <RowDefinition Height="140"/>
+                    <!-- Consignee + Buyer -->
+                    <RowDefinition Height="*"/>
+                    <!-- Item Table -->
+                    <RowDefinition Height="210"/>
+                    <!-- Totals + Bank -->
+                </Grid.RowDefinitions>
+
+
+                <!-- =====================  TITLE BAR  ===================== -->
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0">
+                    <TextBlock Text="TAX INVOICE"
+                               FontWeight="Bold"
+                               FontSize="18"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+
+
+                <!-- =====================  HEADER SECTION ===================== -->
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1.3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- ========== LEFT SIDE: COMPANY DETAILS =========== -->
+                        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
+                            <StackPanel Margin="6">
+                                <TextBlock Text="SHREE HANDLOOM HOUSE" FontWeight="Bold"/>
+                                <TextBlock Text="Shop no. 17 E/2, Highway Park CHS. Ltd.,"/>
+                                <TextBlock Text="Thakur Complex, Kandivali (E), Mumbai – 400 101"/>
+                                <TextBlock Text="Maharashtra, India"/>
+                                <TextBlock Text="GSTIN/UIN : 27BNHPS9363R1ZR   PAN No. : BNHPS9363R"/>
+                                <TextBlock Text="State Name : Maharashtra, Code : 27"/>
+                                <TextBlock Text="VAT TIN No. 27231020019V   CST TIN No. 27231020019C"/>
+                                <TextBlock Text="Udyog Aadhaar Number : MH18D0145347"/>
+                                <TextBlock Text="CONTACT NO : 9920045116 / 9664524382"/>
+                                <TextBlock Text="EMAIL ID : shreehandloomhouse@yahoo.com"/>
+                            </StackPanel>
+                        </Border>
+
+
+                        <!-- ========== MIDDLE SIDE: INVOICE INFO LEFT HALF =========== -->
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Invoice No. :-" Margin="5" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock Text="{Binding InvoiceNo}" Margin="5" Grid.Row="0" Grid.Column="1"/>
+
+                            <TextBlock Text="Buyer's Order No. :-" Margin="5" Grid.Row="1" Grid.Column="0"/>
+                            <TextBlock Text="{Binding BuyerOrderNo}" Margin="5" Grid.Row="1" Grid.Column="1"/>
+
+                            <TextBlock Text="PO/WO No. :-" Margin="5" Grid.Row="2" Grid.Column="0"/>
+                            <TextBlock Text="{Binding WorkOrderNo}" Margin="5" Grid.Row="2" Grid.Column="1"/>
+
+                            <TextBlock Text="Dispatch Through :-" Margin="5" Grid.Row="3" Grid.Column="0"/>
+                            <TextBlock Text="{Binding DispatchThrough}" Margin="5" Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+
+
+                        <!-- ========== RIGHT: INVOICE DATES, VEHICLE, DESTINATION =========== -->
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Dated :" Margin="5" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock Text="{Binding InvoiceDate, StringFormat=d}" Margin="5"
+                                       Grid.Row="0" Grid.Column="1"/>
+
+                            <TextBlock Text="Order Dated :" Margin="5" Grid.Row="1" Grid.Column="0"/>
+                            <TextBlock Text="{Binding OrderDate, StringFormat=d}" Margin="5"
+                                       Grid.Row="1" Grid.Column="1"/>
+
+                            <TextBlock Text="Dispatch Dated:" Margin="3" Grid.Row="2" Grid.Column="0"/>
+                            <TextBlock Text="{Binding DispatchDate, StringFormat=d}" Margin="6"
+                                       Grid.Row="2" Grid.Column="1"/>
+
+                            <TextBlock Text="Destination :-" Margin="5" Grid.Row="3" Grid.Column="0"/>
+                            <TextBlock Text="{Binding Destination}" Margin="5"
+                                       Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+
+                    </Grid>
+                </Border>
+
+                <!-- =====================  CONSIGNEE + BUYER SECTION  ===================== -->
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- ===== LEFT: CONSIGNEE (SHIP TO) ===== -->
+                        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
+                            <StackPanel Margin="6">
+                                <TextBlock Text="Consignee (Ship to)" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock FontWeight="SemiBold">
+                                    <Run Text="M/s. "/>
+                                    <Run Text="{Binding ConsigneeName}"/>   
+                                </TextBlock>
+                                <TextBlock Text="{Binding ConsigneeAddress}" 
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           Margin="0,4,0,0"
+                           Height="90"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- ===== RIGHT: BUYER (BILL TO) ===== -->
+                        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
+                            <StackPanel Margin="6">
+                                <TextBlock Text="Buyer (Bill to)" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock FontWeight="SemiBold">
+                                    <Run Text="M/s. "/>
+                                    <Run Text="{Binding BuyerName}"/>   
+                                </TextBlock>
+                                <TextBlock Text="{Binding BuyerAddress}" 
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           Margin="0,4,0,0"
+                           Height="90"/>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Border>
+                <!-- =====================  ITEM TABLE  ===================== -->
+                <!-- =====================  ITEM TABLE  ===================== -->
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
+                    <Grid>
+
+                        <!-- 🔹 DEFINE ROWS -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <!-- Header -->
+                            <RowDefinition Height="*"/>
+                            <!-- Items -->
+                        </Grid.RowDefinitions>
+
+                        <!-- ================= HEADER ROW ================= -->
+                        <Grid Grid.Row="0" Background="#FFF5F5F5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Sr.No" Grid.Column="0"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Description" Grid.Column="1"
+                       VerticalAlignment="Center" Margin="5,0,0,0"/>
+
+                            <TextBlock Text="HSN/SAC" Grid.Column="2"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Quantity" Grid.Column="3"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Per" Grid.Column="4"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Rate" Grid.Column="5"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <TextBlock Text="Amount" Grid.Column="6"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+
+                        <!-- ================= ITEM ROWS ================= -->
+                        <ItemsControl Grid.Row="1"  ItemsSource="{Binding Items}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="Black" BorderThickness="0,0,0,1">
+                                        <Grid Height="30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="120"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{Binding SrNo}" Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="{Binding Description}" Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Margin="5,0,0,0"/>
+
+                                            <TextBlock Text="{Binding HSN}" Grid.Column="2"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="{Binding Quantity}" Grid.Column="3"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="{Binding Per}" Grid.Column="4"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="{Binding Rate, StringFormat=0.00}"
+                                       Grid.Column="5"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,10,0"/>
+
+                                            <TextBlock Text="{Binding Amount, StringFormat=0.00}"
+                                       Grid.Column="6"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,10,0"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </Grid>
+                </Border>
+
+
+                <!-- ===================== TOTALS + GST + DECLARATION + BANK ===================== -->
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="4" Padding="6">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.5*"/>
+                            <!-- Left big area -->
+                            <ColumnDefinition Width="1.5*"/>
+                            <!-- Bank details -->
+                        </Grid.ColumnDefinitions>
+
+                        <!-- LEFT SIDE -->
+                        <StackPanel Grid.Column="0">
+
+                            <!-- Amount Chargeable In Words -->
+                            <TextBlock Text="Amount Chargeable (In Words):" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding AmountInWords}" TextWrapping="Wrap" Margin="0,4,0,10"/>
+
+                            <!-- GST TABLE HEADER -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <!-- HSN -->
+                                    <ColumnDefinition Width="100"/>
+                                    <!-- Taxable Value -->
+                                    <ColumnDefinition Width="80"/>
+                                    <!-- IGST -->
+                                    <ColumnDefinition Width="80"/>
+                                    <!-- CGST -->
+                                    <ColumnDefinition Width="80"/>
+                                    <!-- SGST -->
+                                    <ColumnDefinition Width="100"/>
+                                    <!-- Total GST -->
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="HSN/SAC" FontWeight="Bold" Grid.Column="0"/>
+                                <TextBlock Text="Taxable Value" FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Center"/>
+                                <TextBlock Text="IGST" FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Center"/>
+                                <TextBlock Text="CGST" FontWeight="Bold" Grid.Column="3" HorizontalAlignment="Center"/>
+                                <TextBlock Text="SGST" FontWeight="Bold" Grid.Column="4" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Total Gst" FontWeight="Bold" Grid.Column="5" HorizontalAlignment="Center"/>
+                            </Grid>
+
+                            <!-- GST VALUES ROW -->
+                            <Border BorderBrush="Black" BorderThickness="0,1,0,1" Margin="0,4,0,0">
+                                <Grid Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="TOTAL" Grid.Column="0" VerticalAlignment="Center"/>
+
+                                    <TextBlock Text="{Binding Total, StringFormat=0.00}" 
+                               Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="{Binding IGST, StringFormat=0.00}"
+                               Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="{Binding CGST, StringFormat=0.00}"
+                               Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="{Binding SGST, StringFormat=0.00}"
+                               Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="{Binding TotalGST, StringFormat=0.00}" 
+                               Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <!-- DECLARATION -->
+                            <TextBlock Text="Declaration" FontWeight="Bold" Margin="0,10,0,2"/>
+                            <TextBlock Text="We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct."
+                       TextWrapping="Wrap" FontSize="12"/>
+
+                        </StackPanel>
+
+
+                        <!-- RIGHT SIDE: BANK + SIGN -->
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+
+                            <TextBlock Text="Company Bank Details" FontWeight="Bold" HorizontalAlignment="Right"/>
+
+                            <TextBlock Text="Bank Name: HDFC Bank" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Account No: 5020000159910" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Branch: Kandivali West, Mumbai" HorizontalAlignment="Right"/>
+                            <TextBlock Text="IFS Code: HDFC0000591" HorizontalAlignment="Right" Margin="0,0,0,20"/>
+
+                            <TextBlock Text="For, SHREE HANDLOOM HOUSE" 
+                       FontWeight="Bold" HorizontalAlignment="Right" Margin="0,20,0,0"/>
+
+                            <TextBlock Text="Authorised Signatory" HorizontalAlignment="Right" Margin="0,35,0,0"/>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,119 @@
+﻿<Page x:Class="ShreeHandloomInvoice.Views.InvoicePreviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShreeHandloomInvoice.Views"
+      mc:Ignorable="d" 
+     Background="White">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="30">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- TITLE -->
+            <TextBlock Text="TAX INVOICE" FontSize="20" FontWeight="Bold"
+                       HorizontalAlignment="Center" Grid.Row="0" Margin="0 0 0 10"/>
+
+            <!-- Header Section -->
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left -->
+                    <StackPanel>
+                        <TextBlock Text="SHREE HANDLOOM HOUSE" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="Shop no. 17 E/2, Highway Park CHS. Ltd."/>
+                        <TextBlock Text="Kandivali (E), Mumbai – 400 101"/>
+                        <TextBlock Text="GSTIN: {Binding Invoice.GSTIN}"/>
+                        <TextBlock Text="State : Maharashtra (27)"/>
+                        <TextBlock Text="Contact: 9920045116"/>
+                    </StackPanel>
+
+                    <!-- Right -->
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding Invoice.InvoiceNo}">InvoiceNo :-  </TextBlock>
+                        <TextBlock Text="{Binding Invoice.InvoiceDate}">Date :- </TextBlock>
+                        <TextBlock Text="{Binding Invoice.OrderNo}">Buyer's Order No :- </TextBlock>
+                        <TextBlock Text="{Binding Invoice.DispatchThrough}">Dispatch Through :- </TextBlock>
+                        <TextBlock Text="{Binding Invoice.VehicleNo}">Vehicle No :- </TextBlock>
+                        <TextBlock Text="{Binding Invoice.Destination}">Destination :- </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Buyer Details -->
+            <Border BorderBrush="Black" BorderThickness="1"
+                    Padding="10" Grid.Row="2" Margin="0 10 0 0">
+                <StackPanel>
+                    <TextBlock Text="Buyer (Bill To)" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Invoice.BuyerName}" Margin="0 3"/>
+                    <TextBlock Text="{Binding Invoice.BuyerAddress}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Invoice.BuyerGSTIN}">GSTIN :- </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <!-- Items -->
+            <Border BorderBrush="Black" BorderThickness="1"
+                    Margin="0 10 0 0" Grid.Row="3" Padding="5">
+                <DataGrid ItemsSource="{Binding Invoice.Items}"
+                          AutoGenerateColumns="False" HeadersVisibility="Column"
+                          IsReadOnly="True">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sr.No" Binding="{Binding SrNo}" Width="50"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+                        <DataGridTextColumn Header="HSN" Binding="{Binding HSN}" Width="80"/>
+                        <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}" Width="80"/>
+                        <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" Width="100"/>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="120"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </Border>
+
+            <!-- Summary -->
+            <StackPanel Grid.Row="4" Margin="0 10 0 0">
+
+                <TextBlock Text="Amount in Words: {Binding Invoice.AmountInWords}"
+                           Margin="0 10" FontWeight="Bold"/>
+
+                <Grid Margin="0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Total Amount:" FontSize="14"/>
+                    <TextBlock Text="{Binding Invoice.TotalAmount}"
+                               Grid.Column="1" FontWeight="Bold"/>
+                </Grid>
+
+                <TextBlock Text="Declaration: We declare that this invoice shows the actual price of the goods described and all particulars are true and correct."
+                           TextWrapping="Wrap" Margin="0 10"/>
+
+                <TextBlock Text="For, SHREE HANDLOOM HOUSE"
+                           HorizontalAlignment="Right" FontWeight="Bold"/>
+
+                <TextBlock Text="Authorized Signatory"
+                           HorizontalAlignment="Right"/>
+            </StackPanel>
+            <Button Content="Print Invoice"
+                 Command="{Binding PrintCommand}"
+                 Width="150" Height="40"
+                 HorizontalAlignment="Right"
+                 Margin="10"/>  
+        </Grid>
+       
+    </ScrollViewer>
+</Page>
