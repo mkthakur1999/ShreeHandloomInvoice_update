@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       Background="White"
       Title="Invoice Input">
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20">
 
@@ -21,10 +22,11 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/> 
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
@@ -47,6 +49,12 @@
 
                     <TextBlock Text="Vehicle No:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
                     <TextBox Text="{Binding Invoice.VehicleNo}" Grid.Row="2" Grid.Column="3" Margin="5"/>
+
+                    <TextBlock Text="PO/WO No. :-" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Invoice.VehicleNo}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                    <TextBlock Text="Destination :" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+                    <TextBox Text="{Binding Invoice.VehicleNo}" Grid.Row="3" Grid.Column="3" Margin="5"/>
                 </Grid>
             </GroupBox>
 
@@ -60,10 +68,10 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Consignee Name:" Grid.Row="0"/>
-                    <TextBox Text="{Binding Invoice.BuyerName}" Grid.Row="0" Margin="150 0 0 5"/>
+                    <TextBox Text="{Binding Invoice.ConsigneeName}" Grid.Row="0" Margin="150 0 0 5"/>
 
                     <TextBlock Text="Consignee Address:" Grid.Row="2"/>
-                    <TextBox Text="{Binding Invoice.BuyerAddress}" Grid.Row="2" Height="70"
+                    <TextBox Text="{Binding Invoice.ConsigneeAddress}" Grid.Row="2" Height="70"
                  Margin="150 0 0 0" TextWrapping="Wrap" AcceptsReturn="True"/>
                 </Grid>
             </GroupBox>

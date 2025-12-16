@@ -55,9 +55,14 @@ namespace ShreeHandloomInvoice.ViewModel
                 Quantity = NewItem.Quantity,
                 Rate = NewItem.Rate,
                 Unit = NewItem.Unit,
-                Amount = NewItem.Quantity * NewItem.Rate
+                Amount = NewItem.Quantity * NewItem.Rate,
+                
+                
             };
-
+            //var itm = new InvoiceModel
+            //{
+            //    ConsigneeName = Invoice.ConsigneeName
+            //};
             Invoice.Items.Add(item);
 
             // Clear input fields

@@ -15,6 +15,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -54,7 +55,16 @@
 
             <!-- Buyer Details -->
             <Border BorderBrush="Black" BorderThickness="1"
-                    Padding="10" Grid.Row="2" Margin="0 10 0 0">
+                     Padding="10" Grid.Row="2" Margin="0 10 0 0">
+                <StackPanel>
+                    <TextBlock Text="Buyer (Bill To)" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Invoice.ConsigneeName}" Margin="0 3"/>
+                    <TextBlock Text="{Binding Invoice.ConsigneeAddress}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Invoice.BuyerGSTIN}">GSTIN :-</TextBlock>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1"
+                    Padding="10" Grid.Row="3" Margin="0 10 0 0">
                 <StackPanel>
                     <TextBlock Text="Buyer (Bill To)" FontWeight="Bold"/>
                     <TextBlock Text="{Binding Invoice.BuyerName}" Margin="0 3"/>
