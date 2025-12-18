@@ -82,7 +82,7 @@
                             <TextBlock Text="{Binding OrderNo}" Margin="5" Grid.Row="1" Grid.Column="1"/>
 
                             <TextBlock Text="PO/WO No. :-" Margin="5" Grid.Row="2" Grid.Column="0"/>
-                            <TextBlock Text="{Binding WorkOrderNo}" Margin="5" Grid.Row="2" Grid.Column="1"/>
+                            <TextBlock Text="{Binding PoWoNum}" Margin="5" Grid.Row="2" Grid.Column="1"/>
 
                             <TextBlock Text="Dispatch Through :-" Margin="5" Grid.Row="3" Grid.Column="0"/>
                             <TextBlock Text="{Binding DispatchThrough}" Margin="5" Grid.Row="3" Grid.Column="1"/>
@@ -299,7 +299,7 @@
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.Transportation, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding Transportation, StringFormat=0.00}"
                        Grid.Row="0"
                        Grid.Column="1"
                        HorizontalAlignment="Right"
@@ -312,7 +312,7 @@
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.SubTotal, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding SubTotal, StringFormat=0.00}"
                        Grid.Row="1"
                        Grid.Column="1"
                        HorizontalAlignment="Right"
@@ -325,7 +325,7 @@
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.SGSTAmount, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding SGSTAmount, StringFormat=0.00}"
                        Grid.Row="2"
                        Grid.Column="1"
                        HorizontalAlignment="Right"
@@ -338,7 +338,7 @@
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.CGSTAmount, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding CGSTAmount, StringFormat=0.00}"
                        Grid.Row="3"
                        Grid.Column="1"
                        HorizontalAlignment="Right"
@@ -351,7 +351,7 @@
                        Margin="10,0,0,0"
                        VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.IGSTAmount, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding IGSTAmount, StringFormat=0.00}"
                        Grid.Row="4"
                        Grid.Column="1"
                        HorizontalAlignment="Right"
@@ -375,7 +375,7 @@
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"/>
 
-                                            <TextBlock Text="{Binding Invoice.GrandTotal, StringFormat=0.00}"
+                                            <TextBlock Text="{Binding GrandTotal, StringFormat=0.00}"
                                Grid.Column="1"
                                FontWeight="Bold"
                                HorizontalAlignment="Right"
@@ -450,19 +450,19 @@
 
                                     <TextBlock Text="TOTAL" Grid.Column="0" VerticalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Total, StringFormat=0.00}" 
+                                    <TextBlock Text="{Binding SubTotal, StringFormat=0.00}" 
                                Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding IGST, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding IGSTAmount, StringFormat=0.00}"
                                Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding CGST, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding CGSTAmount, StringFormat=0.00}"
                                Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding SGST, StringFormat=0.00}"
+                                    <TextBlock Text="{Binding SGSTAmount, StringFormat=0.00}"
                                Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding Invoice.IGST, StringFormat=0.00}" 
+                                    <TextBlock Text="{Binding GrandTotal, StringFormat=0.00}" 
                                Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Grid>
                             </Border>

@@ -20,14 +20,16 @@ namespace ShreeHandloomInvoice.Views
     /// </summary>
     public partial class PrintInvoicePage : Page
     {
-        public PrintInvoicePage()
+        public PrintInvoicePage(object viewModel)
         {
             InitializeComponent();
+            this.DataContext = viewModel;
+
         }
 
-        public PrintInvoicePage(object viewModel) : this()
-        {
-            this.DataContext = viewModel;
-        }
+        //public PrintInvoicePage(object viewModel) : this()
+        //{
+        //    this.DataContext = viewModel;
+        //}
     }
 }

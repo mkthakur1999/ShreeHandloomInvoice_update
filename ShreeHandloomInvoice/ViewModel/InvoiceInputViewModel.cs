@@ -83,6 +83,7 @@ namespace ShreeHandloomInvoice.ViewModel
 
             // Convert total to words
             Invoice.AmountInWords = AmountToWords.Convert(Invoice.TotalAmount);
+            
 
             // Navigate to Preview Page
             NavigationService.Navigate(new InvoicePreviewViewModel(Invoice));

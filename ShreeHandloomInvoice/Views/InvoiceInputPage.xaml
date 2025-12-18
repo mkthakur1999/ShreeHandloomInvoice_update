@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ShreeHandloomInvoice.Views"
       mc:Ignorable="d" 
-      Background="White"
+      Background="White" 
       Title="Invoice Input">
     
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -148,6 +148,41 @@
                 </DataGrid>
             </GroupBox>
 
+            <GroupBox Header="Charges and GST" Margin="0 10 0 0">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Transportation -->
+                    <TextBlock Text="Transportation:-"/>
+                    <TextBox Grid.Column="1"
+                 Text="{Binding Invoice.Transportation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!-- CGST -->
+                    <TextBlock Grid.Row="1" Text="CGST:-"/>
+                    <TextBox Grid.Row="1" Grid.Column="1"
+                 Text="{Binding Invoice.CGSTPercent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!-- SGST -->
+                    <TextBlock Grid.Column="2" Text="SGST:-"/>
+                    <TextBox Grid.Column="3"
+                 Text="{Binding Invoice.SGSTPercent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!-- IGST -->
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="IGST:-"/>
+                    <TextBox Grid.Row="1" Grid.Column="3"
+                 Text="{Binding Invoice.IGSTPercent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </GroupBox>
 
 
             <!-- Buttons -->

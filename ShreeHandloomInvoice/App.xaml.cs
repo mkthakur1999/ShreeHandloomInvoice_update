@@ -25,6 +25,8 @@ public partial class App : Application
             DataContext = new InvoiceInputViewModel()
         });
 
+        window.WindowState = WindowState.Maximized;
+        window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         window.Show();
     }
 }
