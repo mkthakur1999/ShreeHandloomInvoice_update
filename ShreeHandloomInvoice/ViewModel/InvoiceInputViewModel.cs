@@ -9,10 +9,7 @@ namespace ShreeHandloomInvoice.ViewModel
     {
         public InvoiceInputViewModel()
         {
-            Invoice = new InvoiceModel
-            {
-                Items = new ObservableCollection<InvoiceItemModel>()
-            };
+            Invoice = new InvoiceModel();
 
             NewItem = new InvoiceItemModel();
 

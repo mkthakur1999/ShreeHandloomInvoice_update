@@ -3,16 +3,18 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 
 public class InvoiceModel : BaseViewModel
 {
-    public ObservableCollection<InvoiceItemModel> Items { get; set; }
-
     public InvoiceModel()
     {
         Items = new ObservableCollection<InvoiceItemModel>();
         Items.CollectionChanged += Items_CollectionChanged;
     }
+
+    // ================= ITEMS =================
+    public ObservableCollection<InvoiceItemModel> Items { get; }
 
     private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
@@ -29,8 +31,12 @@ public class InvoiceModel : BaseViewModel
 
     private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(InvoiceItemModel.Amount))
+        if (e.PropertyName == nameof(InvoiceItemModel.Amount) ||
+            e.PropertyName == nameof(InvoiceItemModel.Quantity) ||
+            e.PropertyName == nameof(InvoiceItemModel.Rate))
+        {
             RecalculateTotals();
+        }
     }
 
     // ================= TRANSPORT =================
@@ -45,12 +51,13 @@ public class InvoiceModel : BaseViewModel
         }
     }
 
-    // ================= TOTALS =================
-    public double SubTotal => Items.Sum(i => i.Amount);
-
+    // ================= TAX % =================
     public double SGSTPercent { get; set; } = 9;
     public double CGSTPercent { get; set; } = 9;
     public double IGSTPercent { get; set; } = 0;
+
+    // ================= CALCULATED TOTALS =================
+    public double SubTotal => Items.Sum(i => i.Amount);
 
     public double SGSTAmount => SubTotal * SGSTPercent / 100;
     public double CGSTAmount => SubTotal * CGSTPercent / 100;
@@ -67,16 +74,32 @@ public class InvoiceModel : BaseViewModel
         OnPropertyChanged(nameof(IGSTAmount));
         OnPropertyChanged(nameof(GrandTotal));
 
-        // Optional
         TotalAmount = GrandTotal;
     }
 
+    // ================= COMPANY DETAILS =================
     public string ShopName { get; set; } = "SHREE HANDLOOM HOUSE";
+
     public string ShopAddress { get; set; } =
         "Shop no. 17 E/2, Highway Park CHS. Ltd., Kandivali (E), Mumbai – 400 101";
 
     public string GSTIN { get; set; } = "27BNHPS9363R1ZR";
+    public string PAN { get; set; }
+    public string StateName { get; set; } = "Maharashtra";
+    public string StateCode { get; set; } = "27";
+    public string VatTin { get; set; }
+    public string CstTin { get; set; }
+    public string UdyogAadhaar { get; set; }
+    public string ContactNo { get; set; }
+    public string Email { get; set; }
 
+    // ================= BANK DETAILS =================
+    public string BankName { get; set; }
+    public string BankAccountNo { get; set; }
+    public string BankBranch { get; set; }
+    public string IFSC { get; set; }
+
+    // ================= INVOICE INFO =================
     private string _invoiceNo = "";
     public string InvoiceNo
     {
@@ -96,16 +119,17 @@ public class InvoiceModel : BaseViewModel
     public string DispatchThrough { get; set; }
     public string VehicleNo { get; set; }
     public string Destination { get; set; }
-
-    public string BuyerName { get; set; }
-    public string ConsigneeName { get; set; }
-    public string BuyerGSTIN { get; set; }
-    public string BuyerAddress { get; set; }
-    public string ConsigneeAddress { get; set; }
     public string PoWoNum { get; set; }
 
-    //public ObservableCollection<InvoiceItemModel> Items { get; set; }
+    // ================= BUYER / CONSIGNEE =================
+    public string BuyerName { get; set; }
+    public string BuyerGSTIN { get; set; }
+    public string BuyerAddress { get; set; }
 
+    public string ConsigneeName { get; set; }
+    public string ConsigneeAddress { get; set; }
+
+    // ================= FINAL =================
     private double _totalAmount;
     public double TotalAmount
     {

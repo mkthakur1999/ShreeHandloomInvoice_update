@@ -462,7 +462,7 @@
                                     <TextBlock Text="{Binding SGST, StringFormat=0.00}"
                                Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                                    <TextBlock Text="{Binding TotalGST, StringFormat=0.00}" 
+                                    <TextBlock Text="{Binding Invoice.IGST, StringFormat=0.00}" 
                                Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Grid>
                             </Border>
