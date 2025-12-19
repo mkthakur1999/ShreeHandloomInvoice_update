@@ -1,0 +1,36 @@
+﻿<Window x:Class="AdminUtilityDashboard.Views.SignupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Signup" Height="450" Width="500" WindowStartupLocation="CenterScreen"
+        Background="#F5FAFF" ResizeMode="NoResize">
+    <Grid>
+        <Border Background="White" CornerRadius="12" Padding="30" Width="350" Height="420"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Signup" FontSize="26" FontWeight="Bold"
+                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <!-- Full Name -->
+                <TextBlock Text="Full Name" Margin="0,0,0,5"/>
+                <TextBox x:Name="txtFullName" Height="30" Style="{StaticResource WatermarkTextBoxStyle}" Tag="Enter Your Full Name"/>
+
+                <!-- Username -->
+                <TextBlock Text="Username" Margin="0,15,0,5"/>
+                <TextBox x:Name="txtUsername" Height="30" Style="{StaticResource WatermarkTextBoxStyle}" Tag="Enter Username"/>
+
+                <!-- Password -->
+                <TextBlock Text="Password" Margin="0,15,0,5"/>
+                <PasswordBox x:Name="txtPassword" Height="30" Style="{StaticResource WatermarkPasswordBoxStyle}" Tag="Enter Password"/>
+
+                <!-- Email -->
+                <TextBlock Text="Email" Margin="0,15,0,5"/>
+                <TextBox x:Name="txtEmail" Height="30" Style="{StaticResource WatermarkTextBoxStyle}" Tag="Enter Email Id"/>
+
+                <!-- Signup Button -->
+                <Button Content="Signup" Height="40" Margin="0,20,0,0"
+                        Background="Black" Foreground="White"
+                        Click="Signup_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

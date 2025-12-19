@@ -143,4 +143,11 @@ public class InvoiceModel : BaseViewModel
         get => _amountInWords;
         set => SetProperty(ref _amountInWords, value);
     }
+
+
+    #region for DB
+    public int InvoiceId { get; set; }
+    public string PdfPath { get; set; }
+    public bool IsPdfGenerated { get; set; }
+    #endregion
 }

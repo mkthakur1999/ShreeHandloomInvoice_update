@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows;
 using ShreeHandloomInvoice.Command;
 using System.Windows.Input;
+using System.IO;
+using ShreeHandloomInvoice.Service;
 
 namespace ShreeHandloomInvoice.ViewModel
 {
@@ -28,13 +30,44 @@ namespace ShreeHandloomInvoice.ViewModel
             PrintCommand = new RelayCommand(PrintInvoice);
         }
 
+        //private void PrintInvoice()
+        //{
+        //    try
+        //    {
+        //        var page = new PrintInvoicePage(Invoice); // ✅ SAME OBJECT
+        //        var pd = new PrintDialog();
+        //        pd.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
+
+        //        var pageSize = new Size(793, 1122);
+        //        page.Measure(pageSize);
+        //        page.Arrange(new Rect(0, 0, pageSize.Width, pageSize.Height));
+        //        page.UpdateLayout();
+
+        //        pd.PrintVisual(page, "Invoice Print");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Print error: " + ex.Message);
+        //    }
+        //}
+
         private void PrintInvoice()
         {
             try
             {
-                var page = new PrintInvoicePage(Invoice); // ✅ SAME OBJECT
+                // ✅ Auto PDF recreate
+                if (!File.Exists(Invoice.PdfPath))
+                {
+                    Directory.CreateDirectory(
+                        Path.GetDirectoryName(Invoice.PdfPath));
+
+                    InvoicePdfGenerator.Generate(Invoice, Invoice.PdfPath);
+                }
+
+                var page = new PrintInvoicePage(Invoice);
                 var pd = new PrintDialog();
-                pd.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
+                pd.PrintTicket.PageMediaSize =
+                    new PageMediaSize(PageMediaSizeName.ISOA4);
 
                 var pageSize = new Size(793, 1122);
                 page.Measure(pageSize);
@@ -48,6 +81,7 @@ namespace ShreeHandloomInvoice.ViewModel
                 MessageBox.Show("Print error: " + ex.Message);
             }
         }
+
 
         //private void PrintInvoiceold()
         //{
