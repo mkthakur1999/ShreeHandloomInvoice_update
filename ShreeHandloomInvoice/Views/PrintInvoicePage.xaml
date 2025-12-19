@@ -69,14 +69,21 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Invoice No. :-" Margin="5" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock Text="Invoice No. :-" Margin="5 0 0 10" Grid.Row="0" Grid.Column="0" Height="14"/>
                             <TextBlock Text="{Binding InvoiceNo}" Margin="5" Grid.Row="0" Grid.Column="1"/>
+                            <TextBlock Text="SHH 2025-26"
+                                   FontSize="11"
+                                   FontWeight="SemiBold"
+                                   Margin="5,20,0,0"
+                                   Grid.Row="0"
+                                   Grid.Column="0"/>
 
                             <TextBlock Text="Buyer's Order No. :-" Margin="5" Grid.Row="1" Grid.Column="0"/>
                             <TextBlock Text="{Binding OrderNo}" Margin="5" Grid.Row="1" Grid.Column="1"/>
@@ -86,6 +93,9 @@
 
                             <TextBlock Text="Dispatch Through :-" Margin="5" Grid.Row="3" Grid.Column="0"/>
                             <TextBlock Text="{Binding DispatchThrough}" Margin="5" Grid.Row="3" Grid.Column="1"/>
+                            
+                            <TextBlock Text="Vehical No:-" Margin="5" Grid.Row="4" Grid.Column="0"/>
+                            <TextBlock Text="{Binding VehicleNo}" Margin="5" Grid.Row="4" Grid.Column="1"/>
                         </Grid>
 
 
@@ -114,9 +124,6 @@
                             <TextBlock Text="{Binding DispatchDate, StringFormat=d}" Margin="6"
                                        Grid.Row="2" Grid.Column="1"/>
 
-                            <TextBlock Text="Destination :-" Margin="5" Grid.Row="3" Grid.Column="0"/>
-                            <TextBlock Text="{Binding Destination}" Margin="5"
-                                       Grid.Row="3" Grid.Column="1"/>
                         </Grid>
 
                     </Grid>
